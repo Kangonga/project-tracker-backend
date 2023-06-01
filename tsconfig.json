@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "target": "ES2020",
+        "sourceMap": true,
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "strict": true,
+        "typeRoots": [
+            "./src/types",
+            "./node_modules/@types"
+        ],
+        "baseUrl": "./src",
+        "paths": {
+          "@app/*": ["*"]
+        }
+    },
+    "include": ["src/**/*"]
+}
