@@ -1,6 +1,5 @@
+import { User } from '@app/interfaces/user.interface';
 import { Schema, model } from 'mongoose';
-
-import { User } from '@app/features/userFeature/user.interface';
 
 const userSchema = new Schema<User>({
   firstName: { type: String, required: true },
