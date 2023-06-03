@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import { config } from 'dotenv';
 
 import { connectDb } from '@app/config/connectDb';
-import bugRoutes from '@app/features/bugsFeature/bugs.routes';
+import bugRoutes from '@app/routes/bugs.routes';
 
 config();
 
