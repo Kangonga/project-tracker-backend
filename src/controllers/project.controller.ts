@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 export const getAllProjects = async (req: Request, res: Response) => {
   try {
