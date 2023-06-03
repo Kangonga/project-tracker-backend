@@ -11,8 +11,7 @@
         "plugin:import/warnings",
         "plugin:import/typescript"
     ],
-    "overrides": [
-    ],
+    "overrides": [],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -24,30 +23,35 @@
         "import"
     ],
     "rules": {
-       "import/no-unresolved": "error",
-       "import/order": [
-         "error",
-         {
-           "groups": [
-             "builtin", // Built-in imports (come from NodeJS native) go first
-             "external", // <- External imports
-             "internal", // <- Absolute imports
-             ["sibling", "parent"], // <- Relative imports, the sibling and parent types they can be mingled together
-             "index", // <- index imports
-             "unknown" // <- unknown
-           ],
-           "newlines-between": "always"
-         }
+        "import/no-unresolved": "error",
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin", // Built-in imports (come from NodeJS native) go first
+                    "external", // <- External imports
+                    "internal", // <- Absolute imports
+                    [
+                        "sibling",
+                        "parent"
+                    ], // <- Relative imports, the sibling and parent types they can be mingled together
+                    "index", // <- index imports
+                    "unknown" // <- unknown
+                ],
+                "newlines-between": "always"
+            }
         ]
     },
     "settings": {
-        "import/parsers":{
-            "@typescript-eslint/parser":[".ts"]
+        "import/parsers": {
+            "@typescript-eslint/parser": [
+                ".ts"
+            ]
         },
-        "import/resolver":{
+        "import/resolver": {
             "typescript": {
-                "alwaysTryTypes":true,
-                "project":"./tsconfig.json"
+                "alwaysTryTypes": true,
+                "project": "./tsconfig.json"
             }
         }
     }
