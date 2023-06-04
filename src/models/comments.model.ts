@@ -1,5 +1,6 @@
-import { Comment } from '@app/interfaces/comments.interface';
 import { Schema, model } from 'mongoose';
+
+import { Comment } from '@app/interfaces/comments.interface';
 
 const commentSchema = new Schema<Comment>({
   commenterId: { type: String, required: true },
