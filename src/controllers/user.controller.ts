@@ -1,15 +1,15 @@
+import { Request, Response } from 'express';
+
 import {
   createOneUser,
   deleteSingleUser,
   findAllUsers,
-  findUser,
   findUserById,
   updateSingleUser,
-} from '@app/services/user.service';
+} from '@app/services/crud operations/user.service';
 import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
-import { NextFunction, Request, Response } from 'express';
 
-export const getAllUsers = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+export const getAllUsers = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { users } = await findAllUsers();
   return res.status(200).json({ data: users });
 });
@@ -30,6 +30,6 @@ export const updateUserById = modelAsyncWrapper(async (req: Request, res: Respon
 });
 
 export const deleteUserById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedUser } = await deleteSingleUser(req.params.id);
+  await deleteSingleUser(req.params.id);
   return res.status(200).json({ msg: 'User deleted successfuly' });
 });

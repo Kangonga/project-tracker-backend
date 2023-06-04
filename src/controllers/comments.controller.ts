@@ -1,15 +1,15 @@
+import { Request, Response } from 'express';
+
+import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
 import {
   createOneComment,
   deleteSingleComment,
   findAllComments,
-  findComment,
   findCommentById,
   updateSingleComment,
-} from '@app/services/comments.service';
-import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
-import { NextFunction, Request, Response } from 'express';
+} from '@app/services/crud operations/comments.service';
 
-export const getAllComments = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+export const getAllComments = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { comments } = await findAllComments();
   return res.status(200).json({ data: comments });
 });
@@ -30,6 +30,6 @@ export const updateCommentById = modelAsyncWrapper(async (req: Request, res: Res
 });
 
 export const deleteCommentById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedComment } = await deleteSingleComment(req.params.id);
+  await deleteSingleComment(req.params.id);
   return res.status(200).json({ msg: 'Comment deleted successfuly' });
 });

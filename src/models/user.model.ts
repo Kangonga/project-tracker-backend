@@ -1,5 +1,7 @@
-import { User } from '@app/interfaces/user.interface';
 import { Schema, model } from 'mongoose';
+
+import { User } from '@app/interfaces/user.interface';
+import { hashPassword } from '@app/services/hashPassword';
 
 const userSchema = new Schema<User>({
   firstName: { type: String, required: true },
@@ -8,6 +10,8 @@ const userSchema = new Schema<User>({
   role: { type: String, required: true },
   password: { type: String, required: true },
 });
+
+userSchema.pre('save', hashPassword);
 
 const UserModel = model<User>('User', userSchema);
 

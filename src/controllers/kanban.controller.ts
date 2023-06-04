@@ -1,15 +1,15 @@
+import { Request, Response } from 'express';
+
 import {
   createOneKanban,
   deleteSingleKanban,
   findAllKanbans,
-  findKanban,
   findKanbanById,
   updateSingleKanban,
-} from '@app/services/kanban.service';
+} from '@app/services/crud operations/kanban.service';
 import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
-import { NextFunction, Request, Response } from 'express';
 
-export const getAllKanbans = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+export const getAllKanbans = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { kanbans } = await findAllKanbans();
   return res.status(200).json({ data: kanbans });
 });
@@ -30,6 +30,6 @@ export const updateKanbanById = modelAsyncWrapper(async (req: Request, res: Resp
 });
 
 export const deleteKanbanById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedKanban } = await deleteSingleKanban(req.params.id);
+  await deleteSingleKanban(req.params.id);
   return res.status(200).json({ msg: 'Kanban deleted successfuly' });
 });

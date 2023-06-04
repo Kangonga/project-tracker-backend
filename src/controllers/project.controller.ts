@@ -1,15 +1,15 @@
+import { Request, Response } from 'express';
+
 import {
   createOneProject,
   deleteSingleProject,
   findAllProjects,
-  findProject,
   findProjectById,
   updateSingleProject,
-} from '@app/services/project.service';
+} from '@app/services/crud operations/project.service';
 import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
-import { NextFunction, Request, Response } from 'express';
 
-export const getAllProjects = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+export const getAllProjects = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { projects } = await findAllProjects();
   return res.status(200).json({ data: projects });
 });
@@ -30,6 +30,6 @@ export const updateProjectById = modelAsyncWrapper(async (req: Request, res: Res
 });
 
 export const deleteProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedProject } = await deleteSingleProject(req.params.id);
+  await deleteSingleProject(req.params.id);
   return res.status(200).json({ msg: 'Project deleted successfuly' });
 });

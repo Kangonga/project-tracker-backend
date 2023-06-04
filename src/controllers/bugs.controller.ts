@@ -1,15 +1,15 @@
+import { Request, Response } from 'express';
+
 import {
   createOneBug,
   deleteSingleBug,
   findAllBugs,
-  findBug,
   findBugById,
   updateSingleBug,
-} from '@app/services/bugs.service';
+} from '@app/services/crud operations/bugs.service';
 import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
-import { NextFunction, Request, Response } from 'express';
 
-export const getAllBugs = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+export const getAllBugs = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { bugs } = await findAllBugs();
   return res.status(200).json({ data: bugs });
 });
@@ -30,6 +30,6 @@ export const updateBugById = modelAsyncWrapper(async (req: Request, res: Respons
 });
 
 export const deleteBugById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedBug } = await deleteSingleBug(req.params.id);
+  await deleteSingleBug(req.params.id);
   return res.status(200).json({ msg: 'Bug deleted successfuly' });
 });
