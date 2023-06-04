@@ -1,5 +1,6 @@
-import { Bug } from '@app/interfaces/bugs.interface';
 import { Schema, model } from 'mongoose';
+
+import { Bug } from '@app/interfaces/bugs.interface';
 
 const bugSchema = new Schema<Bug>({
   title: { type: String, required: true },
