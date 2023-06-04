@@ -14,13 +14,14 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
 app.use('/bugs', bugRoutes);
 app.use('/comments', commentRoutes);
 app.use('/user', userRoutes);
 app.use('/kanban', kanbanRoutes);
 app.use('/project', projectRoutes);
 
-app.use('*', (req: Request, res: Response) => res.send({ msg: 'not found' }));
+app.use('*', (req: Request, res: Response) => res.send({ msg: 'route not found' }));
 
 const bootstrap = async () => {
   try {
