@@ -20,16 +20,16 @@ export const createProject = modelAsyncWrapper(async (req: Request, res: Respons
 });
 
 export const getProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { project } = await findProject('title', String(req.params.id));
+  const { project } = await findProjectById(req.params.id);
   return res.status(200).json(project);
 });
 
 export const updateProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { updatedProject } = await updateSingleProject(String(req.params.id), req.body);
+  const { updatedProject } = await updateSingleProject(req.params.id, req.body);
   return res.status(200).json(updatedProject);
 });
 
 export const deleteProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedProject } = await deleteSingleProject(String(req.params.id));
+  const { deletedProject } = await deleteSingleProject(req.params.id);
   return res.status(200).json({ msg: 'Project deleted successfuly' });
 });

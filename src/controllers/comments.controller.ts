@@ -20,16 +20,16 @@ export const createComment = modelAsyncWrapper(async (req: Request, res: Respons
 });
 
 export const getCommentById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { comment } = await findComment('title', String(req.params.id));
+  const { comment } = await findCommentById(req.params.id);
   return res.status(200).json(comment);
 });
 
 export const updateCommentById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { updatedComment } = await updateSingleComment(String(req.params.id), req.body);
+  const { updatedComment } = await updateSingleComment(req.params.id, req.body);
   return res.status(200).json(updatedComment);
 });
 
 export const deleteCommentById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedComment } = await deleteSingleComment(String(req.params.id));
+  const { deletedComment } = await deleteSingleComment(req.params.id);
   return res.status(200).json({ msg: 'Comment deleted successfuly' });
 });

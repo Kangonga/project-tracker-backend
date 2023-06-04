@@ -20,16 +20,16 @@ export const createKanban = modelAsyncWrapper(async (req: Request, res: Response
 });
 
 export const getKanbanById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { kanban } = await findKanban('title', String(req.params.id));
+  const { kanban } = await findKanbanById(req.params.id);
   return res.status(200).json(kanban);
 });
 
 export const updateKanbanById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { updatedKanban } = await updateSingleKanban(String(req.params.id), req.body);
+  const { updatedKanban } = await updateSingleKanban(req.params.id, req.body);
   return res.status(200).json(updatedKanban);
 });
 
 export const deleteKanbanById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { deletedKanban } = await deleteSingleKanban(String(req.params.id));
+  const { deletedKanban } = await deleteSingleKanban(req.params.id);
   return res.status(200).json({ msg: 'Kanban deleted successfuly' });
 });

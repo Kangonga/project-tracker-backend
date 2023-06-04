@@ -20,12 +20,12 @@ export const createUser = modelAsyncWrapper(async (req: Request, res: Response) 
 });
 
 export const getUserById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { user } = await findUserById(String(req.params.id));
+  const { user } = await findUserById(req.params.id);
   return res.status(200).json(user);
 });
 
 export const updateUserById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { updatedUser } = await updateSingleUser(String(req.params.id), req.body);
+  const { updatedUser } = await updateSingleUser(req.params.id, req.body);
   return res.status(200).json(updatedUser);
 });
 
