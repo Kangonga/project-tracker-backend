@@ -1,5 +1,6 @@
-import { Kanban } from '@app/interfaces/kanban.interface';
 import { Schema, model } from 'mongoose';
+
+import { Kanban } from '@app/interfaces/kanban.interface';
 
 const kanbanSchema = new Schema<Kanban>({
   title: { type: String, required: true },
