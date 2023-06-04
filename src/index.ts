@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express, Request, Response, json } from 'express';
 import { config } from 'dotenv';
 
 import { connectDb } from '@app/config/connectDb';
@@ -13,7 +13,7 @@ config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(json());
 
 app.use('/bugs', bugRoutes);
 app.use('/comments', commentRoutes);
