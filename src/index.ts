@@ -7,6 +7,7 @@ import userRoutes from '@app/routes/user.routes';
 import kanbanRoutes from '@app/routes/kanban.routes';
 import projectRoutes from '@app/routes/project.routes';
 import commentRoutes from '@app/routes/comments.routes';
+import authRoutes from '@app/routes/auth.routes';
 
 config();
 
@@ -14,7 +15,7 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(json());
-
+app.use('/auth', authRoutes);
 app.use('/bugs', bugRoutes);
 app.use('/comments', commentRoutes);
 app.use('/user', userRoutes);
