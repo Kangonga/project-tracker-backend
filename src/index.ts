@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import { config } from 'dotenv';
 
 import { connectDb } from '@app/config/connectDb';
@@ -10,6 +10,8 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use('/bugs', bugRoutes);
+app.use('*', (req: Request, res: Response) => res.send({ msg: 'not found' }));
+
 const bootstrap = async () => {
   try {
     await connectDb(process.env.MONGO_URI as string);
