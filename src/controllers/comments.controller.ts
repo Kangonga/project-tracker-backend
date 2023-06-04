@@ -24,12 +24,12 @@ export const getCommentById = modelAsyncWrapper(async (req: Request, res: Respon
   return res.status(200).json(comment);
 });
 
-export const updateCommentById = async (req: Request, res: Response) => {
+export const updateCommentById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { updatedComment } = await updateSingleComment(String(req.params.id), req.body);
   return res.status(200).json(updatedComment);
-};
+});
 
-export const deleteCommentById = async (req: Request, res: Response) => {
+export const deleteCommentById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { deletedComment } = await deleteSingleComment(String(req.params.id));
   return res.status(200).json({ msg: 'Comment deleted successfuly' });
-};
+});

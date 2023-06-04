@@ -24,12 +24,12 @@ export const getProjectById = modelAsyncWrapper(async (req: Request, res: Respon
   return res.status(200).json(project);
 });
 
-export const updateProjectById = async (req: Request, res: Response) => {
+export const updateProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { updatedProject } = await updateSingleProject(String(req.params.id), req.body);
   return res.status(200).json(updatedProject);
-};
+});
 
-export const deleteProjectById = async (req: Request, res: Response) => {
+export const deleteProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { deletedProject } = await deleteSingleProject(String(req.params.id));
   return res.status(200).json({ msg: 'Project deleted successfuly' });
-};
+});

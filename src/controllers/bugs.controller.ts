@@ -25,12 +25,12 @@ export const getBugById = modelAsyncWrapper(async (req: Request, res: Response) 
   return res.status(200).json(bug);
 });
 
-export const updateBugById = async (req: Request, res: Response) => {
+export const updateBugById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { updatedBug } = await updateSingleBug(String(req.params.id), req.body);
   return res.status(200).json(updatedBug);
-};
+});
 
-export const deleteBugById = async (req: Request, res: Response) => {
+export const deleteBugById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { deletedBug } = await deleteSingleBug(String(req.params.id));
   return res.status(200).json({ msg: 'Bug deleted successfuly' });
-};
+});

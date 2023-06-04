@@ -24,12 +24,12 @@ export const getKanbanById = modelAsyncWrapper(async (req: Request, res: Respons
   return res.status(200).json(kanban);
 });
 
-export const updateKanbanById = async (req: Request, res: Response) => {
+export const updateKanbanById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { updatedKanban } = await updateSingleKanban(String(req.params.id), req.body);
   return res.status(200).json(updatedKanban);
-};
+});
 
-export const deleteKanbanById = async (req: Request, res: Response) => {
+export const deleteKanbanById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { deletedKanban } = await deleteSingleKanban(String(req.params.id));
   return res.status(200).json({ msg: 'Kanban deleted successfuly' });
-};
+});

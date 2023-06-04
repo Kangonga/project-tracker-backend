@@ -20,16 +20,16 @@ export const createUser = modelAsyncWrapper(async (req: Request, res: Response) 
 });
 
 export const getUserById = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { user } = await findUser('title', String(req.params.id));
+  const { user } = await findUserById(String(req.params.id));
   return res.status(200).json(user);
 });
 
-export const updateUserById = async (req: Request, res: Response) => {
+export const updateUserById = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { updatedUser } = await updateSingleUser(String(req.params.id), req.body);
   return res.status(200).json(updatedUser);
-};
+});
 
-export const deleteUserById = async (req: Request, res: Response) => {
-  const { deletedUser } = await deleteSingleUser(String(req.params.id));
+export const deleteUserById = modelAsyncWrapper(async (req: Request, res: Response) => {
+  const { deletedUser } = await deleteSingleUser(req.params.id);
   return res.status(200).json({ msg: 'User deleted successfuly' });
-};
+});
