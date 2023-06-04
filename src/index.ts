@@ -1,5 +1,6 @@
 import express, { Express, Request, Response, json } from 'express';
 import { config } from 'dotenv';
+import session from 'express-session';
 
 import { connectDb } from '@app/config/connectDb';
 import bugRoutes from '@app/routes/bugs.routes';
@@ -8,6 +9,7 @@ import kanbanRoutes from '@app/routes/kanban.routes';
 import projectRoutes from '@app/routes/project.routes';
 import commentRoutes from '@app/routes/comments.routes';
 import authRoutes from '@app/routes/auth.routes';
+import { sessionStore } from '@app/config/sessionStore';
 
 config();
 
@@ -15,6 +17,14 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(json());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET as string,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+  })
+);
 app.use('/auth', authRoutes);
 app.use('/bugs', bugRoutes);
 app.use('/comments', commentRoutes);
