@@ -6,7 +6,7 @@ import {
   findCommentById,
   updateSingleComment,
 } from '@app/services/comments.service';
-import { modelAsyncWrapper } from '@app/wrappers/trycatch';
+import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
 import { NextFunction, Request, Response } from 'express';
 
 export const getAllComments = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {

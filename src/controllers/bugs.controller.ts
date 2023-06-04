@@ -6,7 +6,7 @@ import {
   findBugById,
   updateSingleBug,
 } from '@app/services/bugs.service';
-import { modelAsyncWrapper } from '@app/wrappers/trycatch';
+import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
 import { NextFunction, Request, Response } from 'express';
 
 export const getAllBugs = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {

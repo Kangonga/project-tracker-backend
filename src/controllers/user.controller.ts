@@ -6,7 +6,7 @@ import {
   findUserById,
   updateSingleUser,
 } from '@app/services/user.service';
-import { modelAsyncWrapper } from '@app/wrappers/trycatch';
+import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
 import { NextFunction, Request, Response } from 'express';
 
 export const getAllUsers = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {

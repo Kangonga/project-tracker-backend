@@ -6,7 +6,7 @@ import {
   findKanbanById,
   updateSingleKanban,
 } from '@app/services/kanban.service';
-import { modelAsyncWrapper } from '@app/wrappers/trycatch';
+import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
 import { NextFunction, Request, Response } from 'express';
 
 export const getAllKanbans = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {

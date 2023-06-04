@@ -6,7 +6,7 @@ import {
   findProjectById,
   updateSingleProject,
 } from '@app/services/project.service';
-import { modelAsyncWrapper } from '@app/wrappers/trycatch';
+import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
 import { NextFunction, Request, Response } from 'express';
 
 export const getAllProjects = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
