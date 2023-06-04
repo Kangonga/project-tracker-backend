@@ -13,6 +13,7 @@ config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
 app.use('/bugs', bugRoutes);
 app.use('/comments', commentRoutes);
 app.use('/user', userRoutes);
