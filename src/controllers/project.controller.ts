@@ -1,26 +1,35 @@
-import { Request, Response } from 'express';
+import {
+  createOneProject,
+  deleteSingleProject,
+  findAllProjects,
+  findProject,
+  findProjectById,
+  updateSingleProject,
+} from '@app/services/project.service';
+import { modelAsyncWrapper } from '@app/wrappers/trycatch';
+import { NextFunction, Request, Response } from 'express';
 
-export const getAllProjects = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {}
-};
+export const getAllProjects = modelAsyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+  const { projects } = await findAllProjects();
+  return res.status(200).json({ data: projects });
+});
 
-export const createProject = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {}
-};
+export const createProject = modelAsyncWrapper(async (req: Request, res: Response) => {
+  const { newproject } = await createOneProject(req.body);
+  return res.status(200).json(newproject);
+});
 
-export const getProjectById = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {}
-};
+export const getProjectById = modelAsyncWrapper(async (req: Request, res: Response) => {
+  const { project } = await findProject('title', String(req.params.id));
+  return res.status(200).json(project);
+});
 
 export const updateProjectById = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {}
+  const { updatedProject } = await updateSingleProject(String(req.params.id), req.body);
+  return res.status(200).json(updatedProject);
 };
 
 export const deleteProjectById = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {}
+  const { deletedProject } = await deleteSingleProject(String(req.params.id));
+  return res.status(200).json({ msg: 'Project deleted successfuly' });
 };
