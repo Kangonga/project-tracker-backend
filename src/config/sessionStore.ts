@@ -7,5 +7,6 @@ const MongoDBStore = connectMongoDBSession(session);
 
 export const sessionStore = new MongoDBStore({
   collection: 'sessions',
-  uri: process.env.MONGODB_URI as string,
+  uri: process.env.MONGO_URI as string,
+  databaseName: 'project_tracker',
 });
