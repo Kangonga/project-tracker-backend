@@ -23,5 +23,6 @@ export const signOut = modelAsyncWrapper(async (req: Request, res: Response) => 
   req.session.destroy(err => {
     if (err) throw Error(err);
   });
+  res.clearCookie('connect.sid');
   return res.status(200).json({ msg: 'success. user logged out' });
 });
