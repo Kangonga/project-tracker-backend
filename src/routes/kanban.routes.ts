@@ -1,3 +1,5 @@
+import { Router } from 'express';
+
 import {
   createKanban,
   deleteKanbanById,
@@ -5,7 +7,6 @@ import {
   getKanbanById,
   updateKanbanById,
 } from '@app/controllers/kanban.controller';
-import { Router } from 'express';
 
 const kanbanRoutes = Router();
 

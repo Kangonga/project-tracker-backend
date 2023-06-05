@@ -1,5 +1,6 @@
-import { createBug, deleteBugById, getAllBugs, getBugById, updateBugById } from '@app/controllers/bugs.controller';
 import { Router } from 'express';
+
+import { createBug, deleteBugById, getAllBugs, getBugById, updateBugById } from '@app/controllers/bugs.controller';
 
 const bugRoutes = Router();
 

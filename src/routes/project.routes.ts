@@ -1,3 +1,5 @@
+import { Router } from 'express';
+
 import {
   createProject,
   deleteProjectById,
@@ -5,7 +7,6 @@ import {
   getProjectById,
   updateProjectById,
 } from '@app/controllers/project.controller';
-import { Router } from 'express';
 
 const projectRoutes = Router();
 

@@ -1,3 +1,5 @@
+import { Router } from 'express';
+
 import {
   createComment,
   deleteCommentById,
@@ -5,7 +7,6 @@ import {
   getCommentById,
   updateCommentById,
 } from '@app/controllers/comments.controller';
-import { Router } from 'express';
 
 const commentRoutes = Router();
 
