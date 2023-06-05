@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { default as uniqueValidator } from 'mongoose-unique-validator';
 
 import { User } from '@app/interfaces/user.interface';
 import { hashPassword } from '@app/services/hashPassword';
@@ -10,7 +11,7 @@ const userSchema = new Schema<User>({
   role: { type: String, required: true },
   password: { type: String, required: true },
 });
-
+userSchema.plugin(uniqueValidator);
 userSchema.pre('save', hashPassword);
 
 const UserModel = model<User>('User', userSchema);
