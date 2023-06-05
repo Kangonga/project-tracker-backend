@@ -13,6 +13,7 @@ export const signIn = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await findAndAuthenticateUser(email, password);
   req.session.isAuth = true;
+  req.session.userId = user._id;
   return res.status(200).json({ msg: 'user authenticated', user, session: req.session, sessionID: req.session.id });
 });
 
