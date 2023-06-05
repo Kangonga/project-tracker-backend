@@ -2,6 +2,12 @@ import { Request, Response } from 'express';
 
 import { findAndAuthenticateUser } from '@app/services/auth services/findAndAuthenticateUser';
 import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
+import { createOneUser } from '@app/services/crud operations/user.service';
+
+export const register = modelAsyncWrapper(async (req: Request, res: Response) => {
+  const { newuser } = await createOneUser(req.body);
+  return res.status(200).json(newuser);
+});
 
 export const signIn = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { email, password } = req.body;
