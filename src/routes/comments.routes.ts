@@ -8,12 +8,13 @@ import {
   updateCommentById,
 } from '@app/controllers/comments.controller';
 import { verifySessionExists } from '@app/middleware/verifySessionExists';
+import { verifyUserRoles } from '@app/middleware/verifyUserRoles';
 
 const commentRoutes = Router();
 
 commentRoutes.use(verifySessionExists);
 
 commentRoutes.route('/').get(getAllComments).post(createComment);
-commentRoutes.route('/:id').get(getCommentById).patch(updateCommentById).delete(deleteCommentById);
+commentRoutes.route('/:id').get(getCommentById).patch(updateCommentById).delete(verifyUserRoles, deleteCommentById);
 
 export default commentRoutes;
