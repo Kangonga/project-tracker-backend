@@ -31,7 +31,7 @@ app.use(
 app.use('/auth', authRoutes);
 app.use('/bugs', bugRoutes);
 app.use('/comments', commentRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 app.use('/kanban', kanbanRoutes);
 app.use('/project', projectRoutes);
 
