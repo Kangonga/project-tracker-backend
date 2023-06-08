@@ -13,8 +13,12 @@
         ],
         "baseUrl": "./src",
         "paths": {
-          "@app/*": ["*"]
+            "@app/*": [
+                "*"
+            ]
         }
     },
-    "include": ["src/**/*"]
+    "include": [
+        "src/**/*"
+    ]
 }
