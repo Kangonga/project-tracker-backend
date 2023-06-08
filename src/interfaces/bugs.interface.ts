@@ -4,6 +4,7 @@ export interface Bug {
   status: string;
   priority: string;
   reportedById: string;
+  projectId: string;
   assigneeId: string;
   closedById: string;
   createdAt: string;

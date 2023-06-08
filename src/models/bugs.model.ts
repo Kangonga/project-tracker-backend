@@ -7,6 +7,7 @@ const bugSchema = new Schema<Bug>({
   description: { type: String, required: true },
   priority: { type: String, required: true },
   status: { type: String, required: true },
+  projectId: { type: String, required: true },
   reportedById: { type: String, required: true },
   assigneeId: { type: String, required: true },
   closedById: { type: String, required: true },
