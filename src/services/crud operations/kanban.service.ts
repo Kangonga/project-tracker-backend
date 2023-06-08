@@ -2,12 +2,8 @@ import { Kanban } from '@app/interfaces/kanban.interface';
 import KanbanModel from '@app/models/kanban.model';
 
 export const findAllKanbans = async () => {
-  let error = false;
   const kanbans = await KanbanModel.find();
-  if (!kanbans) {
-    error = true;
-  }
-  return { error, kanbans };
+  return { kanbans };
 };
 
 export const createOneKanban = async (kanban: Kanban) => {

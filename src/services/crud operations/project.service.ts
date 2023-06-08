@@ -2,12 +2,8 @@ import { Project } from '@app/interfaces/project.interface';
 import ProjectModel from '@app/models/project.model';
 
 export const findAllProjects = async () => {
-  let error = false;
   const projects = await ProjectModel.find();
-  if (!projects) {
-    error = true;
-  }
-  return { error, projects };
+  return { projects };
 };
 
 export const createOneProject = async (project: Project) => {

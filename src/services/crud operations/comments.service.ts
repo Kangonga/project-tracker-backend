@@ -2,12 +2,8 @@ import { Comment } from '@app/interfaces/comments.interface';
 import CommentModel from '@app/models/comments.model';
 
 export const findAllComments = async () => {
-  let error = false;
   const comments = await CommentModel.find();
-  if (!comments) {
-    error = true;
-  }
-  return { error, comments };
+  return { comments };
 };
 
 export const createOneComment = async (comment: Comment) => {

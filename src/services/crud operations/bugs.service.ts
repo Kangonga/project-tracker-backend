@@ -2,12 +2,8 @@ import { Bug } from '@app/interfaces/bugs.interface';
 import BugModel from '@app/models/bugs.model';
 
 export const findAllBugs = async () => {
-  let error = false;
   const bugs = await BugModel.find();
-  if (!bugs) {
-    error = true;
-  }
-  return { error, bugs };
+  return { bugs };
 };
 
 export const createOneBug = async (bug: Bug) => {

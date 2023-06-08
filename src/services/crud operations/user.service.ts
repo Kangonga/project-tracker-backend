@@ -2,12 +2,8 @@ import { User } from '@app/interfaces/user.interface';
 import UserModel from '@app/models/user.model';
 
 export const findAllUsers = async () => {
-  let error = false;
   const users = await UserModel.find();
-  if (!users) {
-    error = true;
-  }
-  return { error, users };
+  return { users };
 };
 
 export const createOneUser = async (user: User) => {
