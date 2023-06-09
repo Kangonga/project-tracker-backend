@@ -5,7 +5,7 @@ import { resetPasswordTokenInterface } from '@app/interfaces/resetPasswordToken.
 const resetPasswordTokenSchema = new Schema<resetPasswordTokenInterface>({
   token: { type: String },
   email: { type: String, required: true },
-  expires: { type: Date, expires: '10m' },
+  expireAt: { type: Date, expires: 5, default: Date.now },
 });
 
 const ResetPasswordTokenModel = model<resetPasswordTokenInterface>('PasswordToken', resetPasswordTokenSchema);
