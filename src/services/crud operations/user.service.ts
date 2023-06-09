@@ -23,7 +23,7 @@ export const findUserById = async (id: string) => {
 };
 
 export const findUser = async (field: string, value: string) => {
-  const user = await UserModel.findOne({ field: value });
+  const user = await UserModel.findOne({ [field]: value });
   if (!user) {
     throw Error('User not found');
   }
