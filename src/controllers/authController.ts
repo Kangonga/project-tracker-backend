@@ -33,9 +33,9 @@ export const signOut = modelAsyncWrapper(async (req: Request, res: Response) => 
 export const resetPasswordRequest = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { email } = req.body;
   const { user } = await findUser('email', email);
-  const { newToken } = await createToken(email);
+  const { token } = await createToken(email);
   req.session.userId = user._id;
-  sendEmail(email, newToken.token);
+  sendEmail(email, token);
   return res.status(200).json({ msg: 'token sent to the provided email' });
 });
 
