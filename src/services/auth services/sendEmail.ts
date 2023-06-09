@@ -23,7 +23,7 @@ export const sendEmail = (email: string, token: string) => {
     if (err) {
       throw new Error(err.message);
     } else {
-      console.log('mail sent');
+      console.log('mail sent. Info', info);
     }
   });
 };
