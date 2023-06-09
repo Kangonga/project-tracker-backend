@@ -32,17 +32,17 @@ export const signOut = modelAsyncWrapper(async (req: Request, res: Response) => 
 
 export const resetPasswordRequest = modelAsyncWrapper(async (req: Request, res: Response) => {
   const { email } = req.body;
-  await findUser('email', email);
+  const { user } = await findUser('email', email);
   const { newToken } = await createToken(email);
+  req.session.userId = user._id;
   sendEmail(email, newToken.token);
   return res.status(200).json({ msg: 'token sent to the provided email' });
 });
 
 export const verifyToken = modelAsyncWrapper(async (req: Request, res: Response) => {
-  const { token, email } = req.body;
-  findAndVerifyToken(token, email);
-  const { user } = await findUser('email', email);
-  req.session.userId = user._id;
+  const { token } = req.body;
+  const { user } = await findUserById(req.session.userId as string);
+  await findAndVerifyToken(token, user.email);
   return res.status(200).json({ msg: 'valid token' });
 });
 
