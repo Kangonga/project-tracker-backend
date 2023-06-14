@@ -10,10 +10,10 @@ export const modelAsyncWrapper = (callback: callbackInterface) => {
       await callback(req, res, next);
     } catch (error) {
       if (error instanceof MongooseError) {
-        return res.status(404).json({ err: error.name });
+        return res.status(404).json({ err: error.name, data: null });
       }
       if (error instanceof Error) {
-        return res.status(404).json({ err: error.message });
+        return res.status(404).json({ err: error.message, data: null });
       }
       res.status(404).json({ err: error });
     }
