@@ -1,6 +1,7 @@
 import express, { Express, Request, Response, json } from 'express';
 import { config } from 'dotenv';
 import session from 'express-session';
+import cors from 'cors';
 
 import { connectDb } from '@app/config/connectDb';
 import bugRoutes from '@app/routes/bugs.routes';
@@ -13,17 +14,25 @@ import { sessionStore } from '@app/config/sessionStore';
 
 config();
 
+const oneday = 1000 * 60 * 60 * 24;
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(json());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
+);
 app.use(
   session({
     secret: process.env.SESSION_SECRET as string,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60,
+      maxAge: oneday,
+      sameSite: 'lax',
     },
     store: sessionStore,
   })
