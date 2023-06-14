@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import session from 'express-session';
 
 import { findAndAuthenticateUser } from '@app/services/auth services/findAndAuthenticateUser';
 import { modelAsyncWrapper } from '@app/wrappers/modelAsyncWrapper';
@@ -19,7 +20,10 @@ export const signIn = modelAsyncWrapper(async (req: Request, res: Response) => {
   await findAndDeleteSession(user._id.toString());
   req.session.isAuth = true;
   req.session.userId = user._id.toString();
-  return res.status(200).json({ msg: 'user authenticated', user, session: req.session, sessionID: req.session.id });
+  req.session.save(function (err) {
+    if (err) throw Error(err);
+  });
+  return res.status(200).json({ msg: 'user authenticated', user });
 });
 
 export const signOut = modelAsyncWrapper(async (req: Request, res: Response) => {
@@ -54,4 +58,13 @@ export const resetPassword = modelAsyncWrapper(async (req: Request, res: Respons
   const { user } = await findUserById(req.session.userId as string);
   user.password = password;
   return res.status(200).json({ msg: 'success. password updated' });
+});
+
+export const isLoggedIn = modelAsyncWrapper(async (req: Request, res: Response) => {
+  console.log(req.session, req.sessionID);
+  if (!req.session.userId) {
+    throw Error('User not logged in');
+  }
+  const { user } = await findUserById(req.session.userId);
+  return res.status(200).json(user);
 });
